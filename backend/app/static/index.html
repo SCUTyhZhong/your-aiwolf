@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Werewolf Web Console</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="bg-blur"></div>
+  <main class="container">
+    <header class="hero">
+      <h1>AI Werewolf Console</h1>
+      <p>单 AI + 单人五角色测试面板</p>
+    </header>
+
+    <section class="panel">
+      <h2>创建对局</h2>
+      <div class="grid">
+        <label>模式
+          <select id="mode" disabled>
+            <option value="solo-human-five">单 AI + 单人五角色</option>
+          </select>
+        </label>
+        <label>模型提供方
+          <select id="provider">
+            <option value="mock">mock</option>
+            <option value="openai">openai</option>
+            <option value="gemini">gemini</option>
+            <option value="minimax">minimax</option>
+          </select>
+        </label>
+        <label>模型名称
+          <input id="modelName" value="rule-fallback" />
+        </label>
+        <label id="baseUrlWrap">Base URL (可选)
+          <input id="baseUrl" placeholder="如 https://.../v1" />
+        </label>
+        <label id="apiKeyWrap">API Key (可选)
+          <input id="apiKey" type="password" placeholder="优先使用环境变量" />
+        </label>
+        <label>温度
+          <input id="temperature" type="number" step="0.1" value="0.3" />
+        </label>
+        <label>随机种子
+          <input id="seed" type="number" value="11" />
+        </label>
+        <label>自动推进步数
+          <input id="maxActions" type="number" value="100" />
+        </label>
+      </div>
+      <div class="actions">
+        <button id="createGameBtn">创建对局</button>
+        <button id="refreshBtn" disabled>刷新待行动</button>
+        <button id="autoplayBtn" disabled>自动推进 AI</button>
+      </div>
+      <pre id="createResult" class="log"></pre>
+    </section>
+
+    <section class="panel split">
+      <div>
+        <h2>待行动</h2>
+        <div id="pendingMeta" class="meta"></div>
+        <div id="pendingList" class="stack"></div>
+      </div>
+      <div>
+        <h2>历史</h2>
+        <button id="historyBtn" disabled>刷新历史</button>
+        <pre id="historyLog" class="log tall"></pre>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>状态视角</h2>
+      <div class="inline">
+        <label>查看槽位
+          <select id="viewerSlot"></select>
+        </label>
+        <button id="stateBtn" disabled>刷新状态</button>
+      </div>
+      <pre id="stateLog" class="log"></pre>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
