@@ -6,14 +6,15 @@ This guide explains:
 - How to run mixed mode (you control 5 roles, test AI controls 1 role).
 - How to configure model providers (`mock`, `openai`, `gemini`, `minimax`).
 
-Project root: `d:\ayohi\ai-werewolf`
-Backend folder: `d:\ayohi\ai-werewolf\backend`
+Project root: `./`
+Backend folder: `./backend`
 
 ## 2. Start Backend
 From `backend`:
 
 ```powershell
-C:/Users/yohi.zhong/AppData/Local/Programs/Python/Python314/python.exe -m app.main
+cd backend
+python -m app.main
 ```
 
 Default server:
@@ -204,7 +205,7 @@ Requirements:
 PowerShell example:
 
 ```powershell
-$env:OPENAI_API_KEY = "your_openai_key"
+$env:OPENAI_API_KEY = "<your-openai-api-key>"
 ```
 
 Create game payload example:
@@ -225,7 +226,7 @@ Requirements:
 PowerShell example:
 
 ```powershell
-$env:GOOGLE_API_KEY = "your_google_key"
+$env:GOOGLE_API_KEY = "<your-google-api-key>"
 ```
 
 Create game payload example:
@@ -249,13 +250,13 @@ You can configure key in either way:
 1. Environment variables (recommended)
 
 ```powershell
-$env:MINIMAX_API_KEY = "your_minimax_key"
-$env:MINIMAX_BASE_URL = "your_minimax_openai_compatible_base_url"
+$env:MINIMAX_API_KEY = "<your-minimax-api-key>"
+$env:MINIMAX_BASE_URL = "<your-openai-compatible-base-url>"
 ```
 
 2. UI / create API payload (session-scoped)
 - In `/ui`, set provider to `minimax`, then fill `API Key` and `Base URL`.
-- Or send in create payload:
+- Or send in create payload. If you need to share examples publicly, replace the key with a placeholder and prefer env vars in real usage:
 
 ```json
 {
@@ -263,8 +264,8 @@ $env:MINIMAX_BASE_URL = "your_minimax_openai_compatible_base_url"
   "solo_human_slots": 5,
   "model_provider": "minimax",
   "model_name": "abab6.5-chat",
-  "model_api_key": "your_minimax_key",
-  "model_base_url": "your_minimax_openai_compatible_base_url",
+  "model_api_key": "<redacted-or-set-via-env>",
+  "model_base_url": "<your-openai-compatible-base-url>",
   "temperature": 0.3
 }
 ```

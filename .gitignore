@@ -11,6 +11,8 @@ build/
 
 .env
 .env.*
+.envrc
+*.local
 .venv/
 venv/
 
